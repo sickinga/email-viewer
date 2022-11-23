@@ -1,5 +1,5 @@
 {
   "dependencies": {
-    "yapople": "^0.4.8"
+    "mailpop3": "^0.1.0"
   }
 }
