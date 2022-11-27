@@ -52,7 +52,17 @@ function startMailPulling() {
                         console.log("Messages retrieved");
                         lastMailTimestamp = newMail.receivedDate.getTime();
                         mail = newMail.html;
-                        exec("xset s reset && xset dpms force on");
+                        exec("xset s reset && xset dpms force on", (error, stdout, stderr) => {
+                            if (error) {
+                                console.log(`error: ${error.message}`);
+                                return;
+                            }
+                            if (stderr) {
+                                console.log(`stderr: ${stderr}`);
+                                return;
+                            }
+                            console.log(`stdout: ${stdout}`);
+                        });
                     }
                     client.quit();
                 } catch (e) {
