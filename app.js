@@ -61,5 +61,5 @@ function startMailPulling() {
                 }
             })
         );
-    }, 5000);
+    }, 30000);
 }
