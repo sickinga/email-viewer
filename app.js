@@ -41,9 +41,9 @@ server.listen(port, hostname, () => {
 server.on("close", () => client.quit());
 
 function pullMails() {
-    client.connect().then(() =>
-        client.retrieveAll().then((messages) => {
-            try {
+    try {
+        client.connect().then(() =>
+            client.retrieveAll().then((messages) => {
                 const newMail = messages.sort(
                     (a, b) =>
                         b.receivedDate.getTime() - a.receivedDate.getTime()
@@ -68,10 +68,10 @@ function pullMails() {
                     );
                 }
                 client.quit();
-            } catch (e) {
-                client.quit();
-                console.log(e);
-            }
-        })
-    );
+            })
+        );
+    } catch (e) {
+        client.quit();
+        console.log(e);
+    }
 }
